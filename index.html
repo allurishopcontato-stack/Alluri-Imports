@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALLURI — Sofisticação em Cada Detalhe</title>
+<meta name="description" content="Perfumes importados, semijoias, relógios e acessórios exclusivos. Sofisticação em cada detalhe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bordo:#7A0026;
+  --bordo-hover:#950030;
+  --bordo-dark:#5A0018;
+  --wa-green:#25D366;
+  --wa-green-hover:#1DA851;
+  --branco:#FFFFFF;
+  --off-white:#F8F6F4;
+  --cinza:#EFEFEF;
+  --rose-gold:#C9A27A;
+  --rose-light:#E8D5C0;
+  --texto:#1C1C1C;
+  --muted:#8A8A8A;
+  --sombra-bordo:rgba(122,0,38,0.18);
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--texto);background:var(--branco);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+
+/* UTILITIES */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px}
+.label{font-size:.62rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--rose-gold);display:block;margin-bottom:14px}
+.title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;line-height:1.15;color:var(--texto)}
+.subtitle{font-size:.85rem;font-weight:300;color:var(--muted);line-height:1.9;max-width:500px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 34px;font-family:'Montserrat',sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;transition:all .35s var(--ease)}
+.btn-wa{background:var(--wa-green);color:var(--branco);box-shadow:0 10px 36px rgba(37,211,102,.35);animation:waBtnPulse 2.2s ease-in-out infinite}
+.btn-wa:hover{background:var(--wa-green-hover);transform:translateY(-2px);box-shadow:0 16px 44px rgba(37,211,102,.5)}
+@keyframes waBtnPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.45),0 10px 36px rgba(37,211,102,.3)}60%{box-shadow:0 0 0 14px rgba(37,211,102,0),0 10px 36px rgba(37,211,102,.3)}}
+.btn-outline{background:transparent;color:var(--bordo);border:1.5px solid var(--bordo)}
+.btn-outline:hover{background:var(--bordo);color:var(--branco);transform:translateY(-2px)}
+.btn-light{background:var(--branco);color:var(--bordo);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.btn-light:hover{background:var(--off-white);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+
+/* ========== NAVBAR ========== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 0;transition:all .4s var(--ease)}
+.nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(14px);padding:14px 0;box-shadow:0 2px 28px rgba(0,0,0,.07)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;text-decoration:none}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:500;letter-spacing:.28em;color:var(--branco);transition:color .4s;display:flex;align-items:center}
+.nav-logo-text .ndot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--rose-gold);margin-left:3px;vertical-align:super}
+.nav-logo img{height:36px;width:auto;display:none}
+.nav.scrolled .nav-logo-text{display:none}
+.nav.scrolled .nav-logo img{display:block}
+.hero-brand{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5.5vw,4rem);font-weight:300;letter-spacing:.55em;color:var(--branco);opacity:0;animation:up .9s .2s forwards}
+.f-logo-img{height:42px;width:auto;display:block;margin-bottom:16px;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--rose-gold);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-links a:hover{color:var(--rose-gold)}
+.nav.scrolled .nav-links a{color:var(--muted)}
+.nav.scrolled .nav-links a:hover{color:var(--bordo)}
+.nav-cta{font-size:.65rem;padding:10px 22px;background:var(--wa-green);color:var(--branco);font-weight:600;letter-spacing:.15em;text-transform:uppercase;transition:all .3s;animation:waBtnPulse 2.2s ease-in-out infinite}
+.nav-cta:hover{background:var(--wa-green-hover)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1001}
+.hamburger span{display:block;width:23px;height:1.5px;background:var(--branco);transition:all .3s}
+.nav.scrolled .hamburger span{background:var(--bordo)}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}
+
+/* MOBILE NAV */
+.mobile-nav{position:fixed;inset:0;background:var(--bordo-dark);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transform:translateX(100%);transition:transform .5s var(--ease)}
+.mobile-nav.open{transform:translateX(0)}
+.mobile-nav ul{list-style:none;text-align:center;margin-bottom:40px}
+.mobile-nav ul li{margin-bottom:28px}
+.mobile-nav ul li a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--branco);font-weight:300;letter-spacing:.12em;transition:color .3s}
+.mobile-nav ul li a:hover{color:var(--rose-light)}
+.btn-mobile-wa{background:var(--wa-green);color:var(--branco);padding:16px 36px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;animation:waBtnPulse 2.2s ease-in-out infinite}
+
+/* ========== HERO ========== */
+#hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('imagens/hero.png') center 20%/cover no-repeat;animation:heroZoom 18s ease-in-out infinite alternate}
+@keyframes heroZoom{from{transform:scale(1.04)}to{transform:scale(1.11)}}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(80,0,18,.88) 0%,rgba(122,0,38,.65) 45%,rgba(0,0,0,.35) 100%)}
+.hero-c{position:relative;z-index:2;max-width:700px}
+.hero-brand{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,4rem);font-weight:300;letter-spacing:.55em;color:var(--branco);opacity:0;animation:up .9s .2s forwards}
+.hero-line{width:55px;height:1px;background:var(--rose-gold);margin:20px 0;opacity:0;animation:up .9s .4s forwards}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6.5vw,5.2rem);font-weight:400;color:var(--branco);line-height:1.08;margin-bottom:22px;opacity:0;animation:up .9s .6s forwards}
+.hero-h1 em{font-style:italic;color:var(--rose-light)}
+.hero-p{font-size:clamp(.82rem,1.8vw,.95rem);font-weight:300;color:rgba(255,255,255,.84);line-height:1.9;max-width:490px;margin-bottom:44px;opacity:0;animation:up .9s .8s forwards}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;opacity:0;animation:up .9s 1s forwards}
+.btn-h-wa{background:var(--wa-green);color:var(--branco);padding:15px 44px;font-family:'Montserrat',sans-serif;font-size:.67rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;transition:all .45s var(--ease);border:1px solid var(--wa-green);animation:waBtnPulse 2.2s ease-in-out infinite}
+.btn-h-wa:hover{background:var(--wa-green-hover);border-color:var(--wa-green-hover)}
+.btn-h-cat{background:transparent;color:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.32);padding:15px 44px;font-family:'Montserrat',sans-serif;font-size:.67rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;transition:all .45s var(--ease)}
+.btn-h-cat:hover{border-color:rgba(255,255,255,.7);color:var(--branco);background:rgba(255,255,255,.05)}
+.hero-trust{display:flex;gap:28px;flex-wrap:wrap;opacity:0;animation:up .9s 1.2s forwards}
+.trust-i{font-size:.68rem;font-weight:400;color:rgba(255,255,255,.78);letter-spacing:.04em;display:flex;align-items:center;gap:7px}
+.trust-i::before{content:'✓';color:var(--rose-gold);font-size:.8rem;font-weight:700}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;opacity:0;animation:fadeIn 1s 2.2s forwards}
+.hero-scroll span{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.scroll-l{width:1px;height:46px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollAnim 2s ease-in-out infinite}
+@keyframes scrollAnim{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ========== DIFERENCIAIS ========== */
+#diferenciais{padding:120px 0;background:var(--branco)}
+.sec-header{text-align:center;margin-bottom:70px}
+.dif-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--bordo-dark)}
+.dif-card{background:var(--bordo);padding:52px 36px;text-align:center;transition:all .4s var(--ease);position:relative;overflow:hidden}
+.dif-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--rose-gold);transform:scaleX(0);transition:transform .4s var(--ease)}
+.dif-card:hover{background:var(--bordo-hover);transform:translateY(-5px);z-index:1;box-shadow:0 24px 64px rgba(0,0,0,.3)}
+.dif-card:hover::after{transform:scaleX(1)}
+.dif-icon{margin:0 auto 32px;display:flex;flex-direction:column;align-items:center;gap:18px;width:fit-content}
+.dif-icon svg{width:38px;height:38px;stroke:rgba(255,255,255,.82);fill:none;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s}
+.dif-icon::after{content:'';width:22px;height:1px;background:var(--rose-gold);display:block}
+.dif-card:hover .dif-icon svg{stroke:var(--rose-light)}
+.dif-card h3{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:400;margin-bottom:14px;letter-spacing:.05em;color:var(--branco)}
+.dif-card p{font-size:.79rem;font-weight:300;color:rgba(255,255,255,.62);line-height:1.9}
+
+/* ========== PRODUTOS ========== */
+#produtos{padding:120px 0;background:var(--off-white)}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prod-card{position:relative;overflow:hidden;cursor:pointer;background:var(--cinza);aspect-ratio:4/5}
+.prod-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.prod-card:hover img{transform:scale(1.06)}
+.prod-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:62%;background:linear-gradient(to top,rgba(12,0,4,.88) 0%,rgba(12,0,4,.22) 60%,transparent 100%);z-index:1;pointer-events:none}
+.prod-label{position:absolute;bottom:0;left:0;right:0;padding:22px 26px;z-index:2}
+.prod-cat{font-family:'Montserrat',sans-serif;font-size:.56rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-gold);display:block;margin-bottom:6px}
+.prod-label h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--branco);font-weight:400;line-height:1.2}
+.prod-cta{font-size:.6rem;color:rgba(255,255,255,.48);letter-spacing:.16em;text-transform:uppercase;margin-top:9px;display:flex;align-items:center;gap:7px;opacity:0;transform:translateY(7px);transition:all .38s var(--ease)}
+.prod-card:hover .prod-cta{opacity:1;transform:none}
+
+/* ========== SOBRE ========== */
+#sobre{padding:120px 0;background:var(--branco)}
+.sobre-g{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+.sobre-img-wrap{position:relative}
+.sobre-img{width:100%;height:580px;object-fit:cover}
+.sobre-badge{position:absolute;top:36px;left:-16px;background:var(--bordo);color:var(--branco);padding:22px 26px;text-align:center;box-shadow:0 10px 36px rgba(122,0,38,.35)}
+.sobre-badge strong{display:block;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400}
+.sobre-badge span{font-size:.6rem;font-weight:300;letter-spacing:.15em;text-transform:uppercase;opacity:.85}
+.sobre-line{width:48px;height:1px;background:var(--rose-gold);margin:22px 0 28px}
+.sobre-txt{font-size:.85rem;font-weight:300;color:var(--muted);line-height:1.95;margin-bottom:18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:44px;margin-top:44px;border-top:1px solid var(--cinza)}
+.stat strong{display:block;font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:400;color:var(--bordo);line-height:1}
+.stat span{font-size:.63rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;display:block}
+
+/* ========== DEPOIMENTOS ========== */
+#depoimentos{padding:120px 0;background:var(--bordo);overflow:hidden}
+#depoimentos .sec-header .label{color:var(--rose-gold)}
+#depoimentos .sec-header .title{color:var(--branco)}
+.car-wrap{position:relative;overflow:hidden}
+.car-track{display:flex;gap:22px;transition:transform .6s var(--ease)}
+.depo{flex:0 0 calc(33.333% - 15px);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:44px 38px;transition:all .4s}
+.depo:hover{background:rgba(255,255,255,.11)}
+.depo-stars{color:var(--rose-gold);letter-spacing:.12em;margin-bottom:22px;font-size:.9rem}
+.depo-txt{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:rgba(255,255,255,.9);line-height:1.75;margin-bottom:30px;font-weight:300}
+.depo-au{display:flex;align-items:center;gap:14px}
+.depo-av{width:46px;height:46px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(201,162,122,.35)}
+.depo-name{font-size:.78rem;font-weight:500;color:var(--branco)}
+.depo-city{font-size:.68rem;color:rgba(255,255,255,.45);margin-top:3px}
+.car-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:48px}
+.car-btn{width:46px;height:46px;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:var(--branco);font-size:.9rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.car-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.55)}
+.dots{display:flex;gap:8px}
+.dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);cursor:pointer;transition:all .3s}
+.dot.on{width:24px;background:var(--rose-gold)}
+
+/* ========== GALERIA ========== */
+#galeria{padding:120px 0;background:var(--off-white)}
+.galeria-h{text-align:center;margin-bottom:56px}
+.seal{display:inline-flex;align-items:center;gap:10px;background:var(--bordo);color:var(--branco);padding:11px 26px;font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:32px}
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:300px 300px;gap:10px}
+.mos-i{overflow:hidden;position:relative}
+.mos-i img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.mos-i:hover img{transform:scale(1.06)}
+
+/* ========== CATALOGO ========== */
+#catalogo{padding:0;background:var(--bordo)}
+.cat-g{display:grid;grid-template-columns:1fr 1fr;min-height:580px}
+.cat-img-wrap{overflow:hidden;position:relative}
+.cat-img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.cat-img-wrap:hover .cat-img{transform:scale(1.04)}
+.cat-content{padding:80px;display:flex;flex-direction:column;justify-content:center}
+.cat-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.cat-pill{padding:6px 16px;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.62);font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.3rem);color:var(--branco);font-weight:400;line-height:1.15;margin-bottom:20px}
+.cat-line{width:48px;height:1px;background:var(--rose-gold);margin:0 0 26px}
+.cat-text{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.68);line-height:1.9;margin-bottom:44px}
+.btn-cat-grande{background:var(--branco);color:var(--bordo);padding:22px 52px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;transition:all .35s var(--ease);box-shadow:0 12px 40px rgba(0,0,0,.22);align-self:flex-start}
+.btn-cat-grande:hover{background:var(--off-white);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.32)}
+.cat-note{font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.1em;margin-top:18px}
+
+/* ========== INSTAGRAM ========== */
+#instagram{padding:120px 0;background:var(--cinza)}
+#instagram .sec-header{margin-bottom:52px}
+.insta-handle{font-size:.78rem;color:var(--muted);letter-spacing:.1em;margin-top:10px}
+.insta-g{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:44px}
+.insta-i{aspect-ratio:1;overflow:hidden;position:relative;cursor:pointer}
+.insta-i img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease),filter .5s}
+.insta-i::after{content:'♡';position:absolute;inset:0;background:rgba(122,0,38,.58);color:var(--branco);font-size:1.4rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.insta-i:hover img{transform:scale(1.08);filter:brightness(.72)}
+.insta-i:hover::after{opacity:1}
+.insta-cta{text-align:center}
+
+/* ========== CTA FINAL ========== */
+#cta{position:relative;padding:160px 0;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:url('imagens/hero.png') center/cover no-repeat}
+.cta-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(80,0,18,.93),rgba(122,0,38,.87))}
+.cta-c{position:relative;z-index:2;text-align:center;max-width:680px;margin:0 auto}
+.cta-c .label{color:var(--rose-gold)}
+.cta-c h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5.5vw,3.8rem);color:var(--branco);font-weight:400;margin-bottom:22px;line-height:1.18}
+.cta-c p{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.78);line-height:1.9;margin-bottom:48px}
+.btn-cta{background:var(--wa-green);color:var(--branco);padding:22px 58px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;transition:all .35s var(--ease);box-shadow:0 16px 50px rgba(37,211,102,.35);animation:waBtnPulse 2.2s ease-in-out infinite}
+.btn-cta:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(37,211,102,.5);background:var(--wa-green-hover)}
+
+/* ========== FOOTER ========== */
+footer{background:#0B0003;padding:72px 0 36px}
+.footer-g{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:36px}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;letter-spacing:.28em;color:var(--branco);display:block;margin-bottom:14px}
+.f-logo span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--rose-gold);margin-left:2px;vertical-align:super}
+.f-desc{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.85;max-width:270px}
+.f-social{display:flex;gap:12px;margin-top:28px}
+.f-soc{width:38px;height:38px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.72rem;font-weight:600;letter-spacing:.05em;transition:all .3s}
+.f-soc:hover{border-color:var(--rose-gold);color:var(--rose-gold);background:rgba(201,162,122,.07)}
+.f-col h4{font-size:.62rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:22px}
+.f-col ul{list-style:none}
+.f-col ul li{margin-bottom:11px}
+.f-col ul li a{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.45);transition:color .3s}
+.f-col ul li a:hover{color:var(--rose-gold)}
+.footer-bot{display:flex;justify-content:space-between;align-items:center}
+.f-copy{font-size:.68rem;color:rgba(255,255,255,.18);letter-spacing:.05em}
+.f-credit{font-size:.68rem;color:rgba(255,255,255,.13)}
+.f-credit a{color:rgba(201,162,122,.3);transition:color .3s}
+.f-credit a:hover{color:var(--rose-gold)}
+
+/* ========== WA FLOAT ========== */
+.wa-float{position:fixed;bottom:30px;right:30px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-tip{background:var(--branco);color:var(--bordo);padding:8px 16px;font-size:.7rem;font-weight:600;letter-spacing:.05em;box-shadow:0 4px 20px rgba(0,0,0,.12);opacity:0;transform:translateY(5px);transition:all .3s;pointer-events:none;white-space:nowrap}
+.wa-float:hover .wa-tip{opacity:1;transform:none}
+.wa-btn{width:58px;height:58px;background:var(--wa-green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(37,211,102,.45);cursor:pointer;position:relative;transition:all .3s}
+.wa-btn svg{width:26px;height:26px;fill:var(--branco)}
+.wa-btn::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.5);animation:pulse 1.8s ease-in-out infinite}
+.wa-btn::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1.5px solid rgba(37,211,102,.2);animation:pulse 1.8s ease-in-out .4s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:0}}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 12px 36px rgba(37,211,102,.6)}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:1024px){
+  .dif-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .sobre-g{grid-template-columns:1fr;gap:48px}
+  .sobre-badge{display:none}
+  .sobre-img{height:420px}
+  .cat-g{grid-template-columns:1fr}
+  .cat-img-wrap{height:360px}
+  .cat-content{padding:60px 40px}
+  .footer-g{grid-template-columns:1fr 1fr}
+  .insta-g{grid-template-columns:repeat(3,1fr)}
+  .mosaic{grid-template-columns:repeat(3,1fr);grid-template-rows:260px 260px}
+}
+@media(max-width:768px){
+  .container{padding:0 18px}
+  /* NAV */
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  /* HERO */
+  #hero{min-height:100svh}
+  .hero-c{max-width:100%}
+  .hero-h1{font-size:clamp(2.2rem,10vw,3.5rem);margin-bottom:16px}
+  .hero-p{font-size:.82rem;margin-bottom:32px}
+  .hero-btns{flex-direction:column;gap:12px;margin-bottom:32px}
+  .btn-h-wa,.btn-h-cat{width:100%;justify-content:center;padding:16px 24px;font-size:.65rem}
+  .hero-trust{gap:10px 20px}
+  .trust-i{font-size:.62rem}
+  /* DIFERENCIAIS */
+  #diferenciais{padding:64px 0}
+  .dif-grid{grid-template-columns:1fr 1fr;gap:1px}
+  .dif-card{padding:36px 24px}
+  /* PRODUTOS */
+  #produtos{padding:64px 0}
+  .prod-grid{grid-template-columns:1fr 1fr;gap:8px}
+  /* SOBRE */
+  #sobre{padding:64px 0}
+  .sobre-g{grid-template-columns:1fr;gap:40px}
+  .sobre-img{height:320px}
+  .sobre-badge{display:none}
+  .stats{grid-template-columns:repeat(3,1fr);gap:12px}
+  .stat strong{font-size:1.6rem}
+  .stat span{font-size:.56rem}
+  /* DEPOIMENTOS */
+  #depoimentos{padding:64px 0}
+  .depo{flex:0 0 100%!important;min-width:0!important;padding:32px 24px}
+  .depo-txt{font-size:1.05rem}
+  /* GALERIA */
+  #galeria{padding:64px 0}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px 180px}
+  /* CATALOGO */
+  #catalogo{padding:0}
+  .cat-g{grid-template-columns:1fr}
+  .cat-img-wrap{height:260px}
+  .cat-content{padding:44px 20px}
+  .cat-pills{gap:8px}
+  .btn-cat-grande{width:100%;justify-content:center;padding:18px 24px;font-size:.75rem}
+  /* INSTAGRAM */
+  #instagram{padding:64px 0}
+  .insta-g{grid-template-columns:repeat(2,1fr)}
+  /* CTA */
+  #cta{padding:80px 0}
+  .btn-cta{padding:18px 32px;font-size:.72rem;width:100%;justify-content:center}
+  /* FOOTER */
+  .footer-g{grid-template-columns:1fr;gap:32px}
+  .footer-bot{flex-direction:column;gap:10px;text-align:center}
+  /* WA FLOAT */
+  .wa-float{bottom:18px;right:18px}
+  .wa-btn{width:52px;height:52px}
+  /* GERAL */
+  .sec-header{margin-bottom:44px}
+  .title{font-size:clamp(1.8rem,7vw,2.6rem)}
+}
+@media(max-width:480px){
+  .container{padding:0 16px}
+  .dif-grid{grid-template-columns:1fr;gap:1px}
+  .prod-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:160px 160px 160px}
+  .insta-g{grid-template-columns:repeat(3,1fr)}
+  .hero-trust{flex-direction:column;gap:8px}
+  .stats{gap:8px}
+  .stat strong{font-size:1.4rem}
+  .cat-content{padding:36px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-text">ALLURI<span class="ndot"></span></span>
+        <img src="imagens/logo.png" alt="ALLURI">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#depoimentos">Clientes</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+      </ul>
+      <a href="https://wa.me/553791657135" class="nav-cta">💬 WhatsApp</a>
+      <div class="hamburger" id="hamb"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="#diferenciais">Diferenciais</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#depoimentos">Clientes</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+  </ul>
+  <a href="https://wa.me/553791657135" class="btn-mobile-wa">💬 Falar no WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="container">
+    <div class="hero-c">
+      <div class="hero-brand">ALLURI</div>
+      <div class="hero-line"></div>
+      <h1 class="hero-h1">Sofisticação<br>em <em>Cada Detalhe</em></h1>
+      <p class="hero-p">Perfumes importados, acessórios exclusivos e peças selecionadas para mulheres que valorizam elegância, qualidade e exclusividade.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/553791657135" class="btn-h-wa"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Falar no WhatsApp</a>
+        <a href="https://www.alluristore.com.br/loja.html" target="_blank" class="btn-h-cat">Acessar Catálogo<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-i">Produtos Selecionados</span>
+        <span class="trust-i">Envio para Todo Brasil</span>
+        <span class="trust-i">Atendimento Personalizado</span>
+        <span class="trust-i">Qualidade Garantida</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-l"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="container">
+    <div class="sec-header">
+      <span class="label reveal">Por que escolher a ALLURI</span>
+      <h2 class="title reveal d1">Uma experiência única<br>em cada compra</h2>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card reveal">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/><path d="M9 3l3 6 3-6"/></svg>
+        </div>
+        <h3>Produtos Exclusivos</h3>
+        <p>Trabalhamos com produtos selecionados para quem busca elegância e sofisticação em cada detalhe.</p>
+      </div>
+      <div class="dif-card reveal d1">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12l8.73-5.04M12 22V12"/></svg>
+        </div>
+        <h3>Entrega para Todo Brasil</h3>
+        <p>Envio rápido e seguro para qualquer região, com rastreamento completo do seu pedido.</p>
+      </div>
+      <div class="dif-card reveal d2">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg>
+        </div>
+        <h3>Qualidade Garantida</h3>
+        <p>Produtos cuidadosamente escolhidos para garantir a melhor experiência a cada compra.</p>
+      </div>
+      <div class="dif-card reveal d3">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Compra Segura</h3>
+        <p>Atendimento humanizado e suporte completo em cada etapa da sua jornada conosco.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="container">
+    <div class="sec-header">
+      <span class="label reveal">Coleção</span>
+      <h2 class="title reveal d1">Produtos em Destaque</h2>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <img src="imagens/perfume 1.png" alt="Perfume Importado ALLURI" loading="lazy">
+        <div class="prod-label">
+          <span class="prod-cat">Perfumes</span>
+          <h4>Perfumes Importados</h4>
+        </div>
+      </div>
+      <div class="prod-card reveal d1">
+        <img src="imagens/colar.png" alt="Colar ALLURI" loading="lazy">
+        <div class="prod-label">
+          <span class="prod-cat">Semijoias</span>
+          <h4>Colares</h4>
+        </div>
+      </div>
+      <div class="prod-card reveal d2">
+        <img src="imagens/brinco.png" alt="Brinco ALLURI" loading="lazy">
+        <div class="prod-label">
+          <span class="prod-cat">Semijoias</span>
+          <h4>Brincos</h4>
+        </div>
+      </div>
+      <div class="prod-card reveal d1">
+        <img src="imagens/anel.png" alt="Anel ALLURI" loading="lazy">
+        <div class="prod-label">
+          <span class="prod-cat">Semijoias</span>
+          <h4>Anéis</h4>
+        </div>
+      </div>
+      <div class="prod-card reveal d2">
+        <img src="imagens/perfume 2.png" alt="Perfume Importado ALLURI" loading="lazy">
+        <div class="prod-label">
+          <span class="prod-cat">Perfumes</span>
+          <h4>Perfumes Importados</h4>
+        </div>
+      </div>
+      <div class="prod-card reveal d3">
+        <img src="imagens/colar 2.png" alt="Colar ALLURI" loading="lazy">
+        <div class="prod-label">
+          <span class="prod-cat">Semijoias</span>
+          <h4>Colares</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-g">
+      <div class="sobre-img-wrap reveal">
+        <img class="sobre-img" src="imagens/brinco 2.png" alt="A Elegância ALLURI" loading="lazy">
+        <div class="sobre-badge">
+          <strong>+1000</strong>
+          <span>Clientes Satisfeitas</span>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <span class="label">Nossa história</span>
+        <h2 class="title">A Elegância Que<br>Você Merece</h2>
+        <div class="sobre-line"></div>
+        <p class="sobre-txt">A ALLURI nasceu para oferecer produtos que unem beleza, qualidade e exclusividade. Cada item é cuidadosamente selecionado para proporcionar uma experiência única e sofisticada.</p>
+        <p class="sobre-txt">Acreditamos que toda mulher merece se sentir especial. Por isso, buscamos as melhores fragrâncias, as semijoias mais refinadas e os acessórios mais exclusivos para compor o seu estilo único.</p>
+        <div class="stats">
+          <div class="stat"><strong>100%</strong><span>Clientes Satisfeitas</span></div>
+          <div class="stat"><strong>+100</strong><span>Produtos Exclusivos</span></div>
+          <div class="stat"><strong>100%</strong><span>Qualidade Garantida</span></div>
+        </div>
+        <div style="margin-top:44px">
+          <a href="https://wa.me/553791657135" class="btn btn-wa">💬 Falar com a Equipe</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="container">
+    <div class="galeria-h">
+      <span class="label reveal">Comunidade</span>
+      <h2 class="title reveal d1">Nossas Clientes</h2>
+      <p class="subtitle reveal d2" style="margin:14px auto 0;text-align:center">Mulheres que escolheram sofisticação e exclusividade</p>
+      <div class="reveal d3"><div class="seal">⭐ +1000 Clientes Satisfeitas</div></div>
+    </div>
+    <div class="mosaic">
+      <div class="mos-i reveal">
+        <img src="imagens/cliente.png" alt="Cliente ALLURI" loading="lazy">
+      </div>
+      <div class="mos-i reveal d1">
+        <img src="imagens/CLIENTE 2.jpeg" alt="Cliente ALLURI" loading="lazy">
+      </div>
+      <div class="mos-i reveal d2">
+        <img src="imagens/CLIENTE 3.jpeg" alt="Cliente ALLURI" loading="lazy">
+      </div>
+      <div class="mos-i reveal d1">
+        <img src="imagens/CLIENTE 4.jpeg" alt="Cliente ALLURI" loading="lazy">
+      </div>
+      <div class="mos-i reveal d2">
+        <img src="imagens/CLIENTE 5.jpeg" alt="Cliente ALLURI" loading="lazy">
+      </div>
+      <div class="mos-i reveal d3">
+        <img src="imagens/CLIENTE 6.jpeg" alt="Cliente ALLURI" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGO -->
+<section id="catalogo">
+  <div class="cat-g">
+    <div class="cat-img-wrap reveal">
+      <img class="cat-img" src="imagens/anel 2.jpg" alt="Catálogo ALLURI" loading="lazy">
+    </div>
+    <div class="cat-content reveal d2">
+      <div class="cat-pills">
+        <span class="cat-pill">Perfumes</span>
+        <span class="cat-pill">Semijoias</span>
+        <span class="cat-pill">Relógios</span>
+        <span class="cat-pill">Acessórios</span>
+      </div>
+      <h2 class="cat-title">Explore Toda<br>Nossa Coleção</h2>
+      <div class="cat-line"></div>
+      <p class="cat-text">Todos os nossos produtos exclusivos reunidos em um só lugar. Clique abaixo e descubra sua próxima peça favorita.</p>
+      <a href="https://www.alluristore.com.br/loja.html" target="_blank" id="btnCatalogo" class="btn-cat-grande">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Ver Todos os Produtos
+      </a>
+      <p class="cat-note">Perfumes · Semijoias · Relógios · Acessórios Femininos</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="container">
+    <div class="sec-header">
+      <span class="label reveal">Instagram</span>
+      <h2 class="title reveal d1">Acompanhe Nossas Novidades</h2>
+      <p class="insta-handle reveal d2">@alluri.importss</p>
+    </div>
+    <div class="insta-g reveal">
+      <div class="insta-i"><img src="imagens/perfume 1.png" alt="ALLURI Instagram" loading="lazy"></div>
+      <div class="insta-i"><img src="imagens/colar.png" alt="ALLURI Instagram" loading="lazy"></div>
+      <div class="insta-i"><img src="imagens/brinco.png" alt="ALLURI Instagram" loading="lazy"></div>
+      <div class="insta-i"><img src="imagens/anel.png" alt="ALLURI Instagram" loading="lazy"></div>
+      <div class="insta-i"><img src="imagens/perfume 2.png" alt="ALLURI Instagram" loading="lazy"></div>
+      <div class="insta-i"><img src="imagens/colar 2.png" alt="ALLURI Instagram" loading="lazy"></div>
+    </div>
+    <div class="insta-cta reveal">
+      <a href="https://instagram.com/alluri.importss" target="_blank" class="btn btn-outline">📸 Seguir no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="sec-header">
+      <span class="label reveal">Avaliações</span>
+      <h2 class="title reveal d1">Quem Compra, Recomenda</h2>
+    </div>
+    <div class="car-wrap reveal">
+      <div class="car-track" id="carTrack">
+        <div class="depo">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-txt">"Produtos lindos, atendimento excelente e entrega rapidíssima. Já é a terceira vez que compro e sempre fico encantada!"</p>
+          <div class="depo-au">
+            <img class="depo-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&fit=crop&crop=face" alt="Ana Carolina M.">
+            <div><div class="depo-name">Ana Carolina M.</div><div class="depo-city">São Paulo, SP</div></div>
+          </div>
+        </div>
+        <div class="depo">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-txt">"Perfumes maravilhosos e totalmente originais. A fixação é incrível e o atendimento foi super atencioso do início ao fim."</p>
+          <div class="depo-au">
+            <img class="depo-av" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80&fit=crop&crop=face" alt="Mariana S.">
+            <div><div class="depo-name">Mariana S.</div><div class="depo-city">Rio de Janeiro, RJ</div></div>
+          </div>
+        </div>
+        <div class="depo">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-txt">"Qualidade impecável! As semijoias são lindíssimas e o perfume chegou embalado com muito cuidado. Com certeza comprarei novamente."</p>
+          <div class="depo-au">
+            <img class="depo-av" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&fit=crop&crop=face" alt="Fernanda L.">
+            <div><div class="depo-name">Fernanda L.</div><div class="depo-city">Belo Horizonte, MG</div></div>
+          </div>
+        </div>
+        <div class="depo">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-txt">"Experiência incrível do início ao fim. O relógio que comprei é ainda mais lindo pessoalmente. Recomendo para todas!"</p>
+          <div class="depo-au">
+            <img class="depo-av" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=80&fit=crop&crop=face" alt="Juliana C.">
+            <div><div class="depo-name">Juliana C.</div><div class="depo-city">Curitiba, PR</div></div>
+          </div>
+        </div>
+        <div class="depo">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-txt">"Me apaixonei pelos produtos da ALLURI! O atendimento personalizado fez toda a diferença. Produto chegou antes do prazo!"</p>
+          <div class="depo-au">
+            <img class="depo-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80&fit=crop&crop=face" alt="Camila R.">
+            <div><div class="depo-name">Camila R.</div><div class="depo-city">Porto Alegre, RS</div></div>
+          </div>
+        </div>
+        <div class="depo">
+          <div class="depo-stars">★★★★★</div>
+          <p class="depo-txt">"As semijoias são incríveis! Recebi elogios de todo mundo. Já indiquei a ALLURI para todas as minhas amigas!"</p>
+          <div class="depo-au">
+            <img class="depo-av" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=80&fit=crop&crop=face" alt="Patricia A.">
+            <div><div class="depo-name">Patricia A.</div><div class="depo-city">Salvador, BA</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="car-controls">
+        <button class="car-btn" id="carPrev">←</button>
+        <div class="dots" id="carDots"></div>
+        <button class="car-btn" id="carNext">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-ov"></div>
+  <div class="container">
+    <div class="cta-c reveal">
+      <span class="label">Exclusividade para você</span>
+      <h2>Seu Próximo Produto<br>Favorito Está Aqui</h2>
+      <p>Fale agora com nossa equipe e descubra produtos exclusivos, atendimento personalizado e ofertas especiais criadas para você.</p>
+      <a href="https://wa.me/553791657135" class="btn-cta">💬 Chamar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-g">
+      <div>
+        <img src="imagens/logo.png" alt="ALLURI" class="f-logo-img">
+        <p class="f-desc">Sofisticação em cada detalhe. Perfumes importados, semijoias, relógios e acessórios exclusivos para mulheres elegantes.</p>
+        <div class="f-social">
+          <a href="https://instagram.com/alluri.importss" target="_blank" class="f-soc">IG</a>
+          <a href="https://wa.me/553791657135" target="_blank" class="f-soc">WA</a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="#produtos">Perfumes Importados</a></li>
+          <li><a href="#produtos">Semijoias</a></li>
+          <li><a href="#produtos">Relógios</a></li>
+          <li><a href="#produtos">Acessórios Femininos</a></li>
+          <li><a href="https://www.alluristore.com.br/loja.html" target="_blank">Catálogo Completo</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/553791657135">WhatsApp</a></li>
+          <li><a href="https://instagram.com/alluri.importss">Instagram</a></li>
+          <li><a href="https://www.alluristore.com.br/loja.html" target="_blank">Ver Catálogo</a></li>
+          <li><a href="#sobre">Sobre a Marca</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="f-copy">© 2025 ALLURI. Todos os direitos reservados.</span>
+      <span class="f-credit">Desenvolvido por <a href="#">Nexus</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/553791657135" target="_blank" class="wa-float" title="Falar no WhatsApp">
+  <div class="wa-tip">Fale conosco agora!</div>
+  <div class="wa-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+<script>
+// NAVBAR
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+
+// MOBILE MENU
+const hamb = document.getElementById('hamb');
+const mobileNav = document.getElementById('mobileNav');
+hamb.addEventListener('click', () => {
+  hamb.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamb.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// REVEAL ON SCROLL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// CAROUSEL
+const track = document.getElementById('carTrack');
+const cards = Array.from(track.children);
+const dotsEl = document.getElementById('carDots');
+let cur = 0;
+let perView = () => window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+let total = () => Math.ceil(cards.length / perView());
+
+function cardW() {
+  const gap = 22, pv = perView();
+  return (track.parentElement.offsetWidth - gap * (pv - 1)) / pv;
+}
+
+function renderDots() {
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < total(); i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === cur ? ' on' : '');
+    d.onclick = () => { cur = i; updateCar(); };
+    dotsEl.appendChild(d);
+  }
+}
+
+function updateCar() {
+  const w = cardW(), gap = 22, pv = perView();
+  cards.forEach(c => { c.style.flex = `0 0 ${w}px`; c.style.minWidth = `${w}px`; });
+  track.style.transform = `translateX(-${cur * (w + gap) * pv}px)`;
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === cur));
+}
+
+document.getElementById('carNext').onclick = () => { cur = (cur + 1) % total(); updateCar(); };
+document.getElementById('carPrev').onclick = () => { cur = (cur - 1 + total()) % total(); updateCar(); };
+window.addEventListener('resize', () => { cur = 0; renderDots(); updateCar(); });
+renderDots(); updateCar();
+setInterval(() => { cur = (cur + 1) % total(); updateCar(); }, 5500);
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+</script>
+</body>
+</html>
